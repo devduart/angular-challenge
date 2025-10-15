@@ -8,6 +8,8 @@ export function createCharactersStore(service: CharactersService) {
   const filter = signal('');
   const page = signal(1);
   const totalPages = signal(1);
+  const totalItems = signal(0);
+  const pageSize = 20;
 
   const filtered = computed(() =>
     characters().filter(c =>
@@ -18,18 +20,17 @@ export function createCharactersStore(service: CharactersService) {
   const loadPage = (p = 1) => {
     loading.set(true);
     const term = filter().trim();
-    const req$ = term
-      ? service.searchByName(term, p)
-      : service.getPage(p);
+    const req$ = term ? service.searchByName(term, p) : service.getPage(p);
 
     req$.subscribe({
-      next: (res) => {
+      next: res => {
         characters.set(res.results);
         totalPages.set(res.info.pages);
+        totalItems.set(res.info.count);
         page.set(p);
       },
       error: () => loading.set(false),
-      complete: () => loading.set(false)
+      complete: () => loading.set(false),
     });
   };
 
@@ -43,7 +44,7 @@ export function createCharactersStore(service: CharactersService) {
 
   const search = (term: string) => {
     filter.set(term);
-    loadPage(1);
+    loadPage(1); // volta pra página 1
   };
 
   return Object.freeze({
@@ -52,9 +53,11 @@ export function createCharactersStore(service: CharactersService) {
     loading,
     page,
     totalPages,
+    totalItems,
+    pageSize,
     loadPage,
     nextPage,
     prevPage,
-    search
+    search,
   });
 }

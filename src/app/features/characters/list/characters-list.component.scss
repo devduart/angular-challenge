@@ -1,15 +1,43 @@
-.characters-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  gap: 2rem;
-  justify-items: center;
+.characters-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 1rem 2rem 2rem;
 }
 
+/* Campo de busca centralizado */
+.search-field {
+  width: 100%;
+  max-width: 40rem;
+  align-self: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Loader central */
+.loading-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GRID principal */
+.characters-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding-bottom: 2rem; /* antes era 8rem */
+}
+
+
+/* CARD */
 .character-card {
   width: 18rem;
   border-radius: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
   background-color: var(--mat-surface);
   padding: 2rem 1rem 1.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -24,14 +52,17 @@
   }
 }
 
-/* Avatar circular */
+/* Avatar circular perfeito */
 .avatar-wrapper {
   width: 8rem;
   height: 8rem;
   margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--mat-surface-container-high);
 }
 
 .avatar {
@@ -39,25 +70,43 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  transform: none;
 }
 
-mat-paginator {
-  margin-top: 1rem;
+/* Paginator fixo no rodapé */
+.paginator-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.8rem;
+  background: var(--mat-surface-container-highest);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
+  align-items: center;
   justify-content: center;
+  z-index: 100;
+  padding: 0 1rem;
+  backdrop-filter: blur(6px);
 }
 
 
-/* Responsivo */
-@media (max-width: 768px) {
+/* Responsividade */
+@media (max-width: 64rem) {
   .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
     gap: 1.5rem;
   }
+}
+
+@media (max-width: 37.5rem) {
   .character-card {
-    width: 16rem;
+    width: 100%;
   }
+
   .avatar-wrapper {
-    width: 7rem;
-    height: 7rem;
+    width: 6rem;
+    height: 6rem;
   }
 }

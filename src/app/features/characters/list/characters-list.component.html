@@ -1,5 +1,6 @@
-<div class="container my-4">
-  <mat-form-field appearance="outline" class="w-100 mb-4">
+<div class="characters-container">
+  <!-- Campo de busca -->
+  <mat-form-field appearance="outline" class="search-field">
     <mat-label>Buscar personagem</mat-label>
     <input
       matInput
@@ -9,12 +10,14 @@
     />
   </mat-form-field>
 
-  <div *ngIf="store.loading(); else listTemplate" class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+  <!-- Loader -->
+  <div *ngIf="store.loading(); else listTemplate" class="loading-center">
     <mat-spinner></mat-spinner>
   </div>
 
+  <!-- Lista de personagens -->
   <ng-template #listTemplate>
-    <div class="characters-grid mb-4">
+    <div class="characters-grid">
       <mat-card *ngFor="let c of store.filtered()" class="character-card text-center">
         <div class="avatar-wrapper">
           <img [src]="c.image" [alt]="c.name" class="avatar" />
@@ -25,16 +28,17 @@
         </mat-card-content>
       </mat-card>
     </div>
-
-    <!-- paginator -->
-    <div class="d-flex justify-content-center align-items-center gap-3">
-      <button mat-flat-button color="primary" (click)="store.prevPage()" [disabled]="store.page() === 1">
-        ← Anterior
-      </button>
-      <span class="fw-semibold">{{ store.page() }} / {{ store.totalPages() }}</span>
-      <button mat-flat-button color="primary" (click)="store.nextPage()" [disabled]="store.page() === store.totalPages()">
-        Próxima →
-      </button>
-    </div>
   </ng-template>
 </div>
+
+
+  <!-- Paginador fixo -->
+  <mat-paginator
+    [length]="store.totalItems()"
+    [pageSize]="store.pageSize"
+    [pageIndex]="store.page() - 1"
+    [pageSizeOptions]="[store.pageSize]"
+    showFirstLastButtons
+    (page)="store.loadPage($event.pageIndex + 1)"
+    class="paginator-fixed"
+  ></mat-paginator>

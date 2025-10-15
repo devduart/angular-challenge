@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, catchError, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Character } from '../models/character.model';
 
 export interface CharacterResponse {
-  info: { pages: number; next: string | null; prev: string | null };
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
   results: Character[];
 }
 
@@ -14,19 +20,29 @@ export class CharactersService {
 
   constructor(private http: HttpClient) {}
 
-  getPage(page = 1) {
+  getPage(page = 1): Observable<CharacterResponse> {
     return this.http.get<CharacterResponse>(`${this.API_URL}?page=${page}`).pipe(
-      map(r => r),
-      catchError(() => of({ info: { pages: 0, next: null, prev: null }, results: [] }))
+      map(res => res),
+      catchError(() =>
+        of({
+          info: { count: 0, pages: 0, next: null, prev: null },
+          results: [],
+        } satisfies CharacterResponse) // 👈 garante o mesmo tipo
+      )
     );
   }
 
-  searchByName(name: string, page = 1) {
+  searchByName(name: string, page = 1): Observable<CharacterResponse> {
     return this.http
       .get<CharacterResponse>(`${this.API_URL}/?name=${name}&page=${page}`)
       .pipe(
-        map(r => r),
-        catchError(() => of({ info: { pages: 0, next: null, prev: null }, results: [] }))
+        map(res => res),
+        catchError(() =>
+          of({
+            info: { count: 0, pages: 0, next: null, prev: null },
+            results: [],
+          } satisfies CharacterResponse) // 👈 mesmo aqui
+        )
       );
   }
 }
