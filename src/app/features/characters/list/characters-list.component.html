@@ -9,19 +9,32 @@
     />
   </mat-form-field>
 
-  <div *ngIf="store.loading(); else listTemplate" class="d-flex justify-content-center align-items-center" style="height:60vh">
+  <div *ngIf="store.loading(); else listTemplate" class="d-flex justify-content-center align-items-center" style="height: 60vh;">
     <mat-spinner></mat-spinner>
   </div>
 
   <ng-template #listTemplate>
-    <div class="row g-4">
-      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let c of store.filtered()">
-        <mat-card class="h-100 text-center p-2">
-          <img mat-card-image [src]="c.image" [alt]="c.name" class="rounded-3 mb-2" />
-          <h5>{{ c.name }}</h5>
-          <p class="text-muted">{{ c.species }} — {{ c.status }}</p>
-        </mat-card>
-      </div>
+    <div class="characters-grid mb-4">
+      <mat-card *ngFor="let c of store.filtered()" class="character-card text-center">
+        <div class="avatar-wrapper">
+          <img [src]="c.image" [alt]="c.name" class="avatar" />
+        </div>
+        <mat-card-content>
+          <h5 class="fw-bold mt-3 mb-1">{{ c.name }}</h5>
+          <p class="text-muted small mb-0">{{ c.species }} — {{ c.status }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- paginator -->
+    <div class="d-flex justify-content-center align-items-center gap-3">
+      <button mat-flat-button color="primary" (click)="store.prevPage()" [disabled]="store.page() === 1">
+        ← Anterior
+      </button>
+      <span class="fw-semibold">{{ store.page() }} / {{ store.totalPages() }}</span>
+      <button mat-flat-button color="primary" (click)="store.nextPage()" [disabled]="store.page() === store.totalPages()">
+        Próxima →
+      </button>
     </div>
   </ng-template>
 </div>

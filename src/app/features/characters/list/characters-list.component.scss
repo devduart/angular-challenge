@@ -1,0 +1,63 @@
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.character-card {
+  width: 18rem;
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  background-color: var(--mat-surface);
+  padding: 2rem 1rem 1.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.25);
+  }
+
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+/* Avatar circular */
+.avatar-wrapper {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+mat-paginator {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .characters-grid {
+    gap: 1.5rem;
+  }
+  .character-card {
+    width: 16rem;
+  }
+  .avatar-wrapper {
+    width: 7rem;
+    height: 7rem;
+  }
+}
