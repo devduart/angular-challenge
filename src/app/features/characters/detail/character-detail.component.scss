@@ -1,0 +1,45 @@
+.detail-container {
+  position: relative;
+  background: var(--mat-surface-container-high);
+  color: var(--mat-on-surface);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 28rem;
+  max-width: 90vw;
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.detail-avatar {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--mat-on-surface-variant);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

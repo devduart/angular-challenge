@@ -1,0 +1,15 @@
+<div class="detail-container">
+  <button mat-icon-button class="close-btn" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="detail-content">
+    <img [src]="character().image" [alt]="character().name" class="detail-avatar" />
+    <h2>{{ character().name }}</h2>
+    <p><strong>Status:</strong> {{ character().status }}</p>
+    <p><strong>Espécie:</strong> {{ character().species }}</p>
+    <p><strong>Gênero:</strong> {{ character().gender }}</p>
+    <p><strong>Origem:</strong> {{ character().origin?.name }}</p>
+    <p><strong>Localização:</strong> {{ character().location?.name }}</p>
+  </div>
+</div>
