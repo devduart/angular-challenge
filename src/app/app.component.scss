@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+body.dark-theme {
+  --background: #121212;
+  --text-color: #e0e0e0;
+}
+
+body {
+  --background: #fafafa;
+  --text-color: #212121;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
