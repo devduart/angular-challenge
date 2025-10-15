@@ -1,0 +1,27 @@
+<div class="container my-4">
+  <mat-form-field appearance="outline" class="w-100 mb-4">
+    <mat-label>Buscar personagem</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Digite o nome"
+      (input)="onSearch($event)"
+    />
+  </mat-form-field>
+
+  <div *ngIf="store.loading(); else listTemplate" class="d-flex justify-content-center align-items-center" style="height:60vh">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-template #listTemplate>
+    <div class="row g-4">
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let c of store.filtered()">
+        <mat-card class="h-100 text-center p-2">
+          <img mat-card-image [src]="c.image" [alt]="c.name" class="rounded-3 mb-2" />
+          <h5>{{ c.name }}</h5>
+          <p class="text-muted">{{ c.species }} — {{ c.status }}</p>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+</div>
