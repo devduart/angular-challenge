@@ -92,6 +92,12 @@
 }
 
 
+.detail-dialog .mat-mdc-dialog-container {
+  background: transparent;
+  box-shadow: none;
+}
+
+
 /* Responsividade */
 @media (max-width: 64rem) {
   .characters-grid {

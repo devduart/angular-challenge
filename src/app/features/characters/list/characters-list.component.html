@@ -18,7 +18,7 @@
   <!-- Lista de personagens -->
   <ng-template #listTemplate>
     <div class="characters-grid">
-      <mat-card *ngFor="let c of store.filtered()" class="character-card text-center">
+      <mat-card *ngFor="let c of store.filtered()" class="character-card text-center" (click)="openDetail(c)">
         <div class="avatar-wrapper">
           <img [src]="c.image" [alt]="c.name" class="avatar" />
         </div>
