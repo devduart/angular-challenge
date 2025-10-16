@@ -3,7 +3,7 @@
 <form [formGroup]="form" (ngSubmit)="save()" class="create-form">
   <mat-form-field appearance="outline">
     <mat-label>Nome</mat-label>
-    <input matInput formControlName="name" required />
+    <input matInput formControlName="name" placeholder="Ex: Rick Sanchez" required />
     <mat-error *ngIf="form.controls.name.invalid && form.controls.name.touched">
       Nome é obrigatório.
     </mat-error>
@@ -31,6 +31,16 @@
       <mat-option value="Genderless">Genderless</mat-option>
       <mat-option value="Unknown">Unknown</mat-option>
     </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Origem</mat-label>
+    <input matInput formControlName="origin" placeholder="Ex: Earth (C-137)" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Localização</mat-label>
+    <input matInput formControlName="location" placeholder="Ex: Citadel of Ricks" />
   </mat-form-field>
 
   <mat-form-field appearance="outline">

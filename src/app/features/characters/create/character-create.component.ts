@@ -37,6 +37,8 @@ export class CharacterCreateComponent {
     status: ['Alive'],
     species: ['Human'],
     gender: ['Male'],
+    origin: [''],
+    location: [''],
     image: [''],
   });
 
@@ -44,19 +46,20 @@ export class CharacterCreateComponent {
 
   save() {
     if (this.form.invalid) return;
+    const defaultImage = 'assets/images/default-profile.jpeg';
 
     const newCharacter: Character = {
       id: Date.now(),
       ...this.form.value,
-      image: this.form.value.image || 'https://via.placeholder.com/200',
+      image: this.form.value.image || defaultImage ,
     } as Character;
 
     this.loading.set(true);
     setTimeout(() => {
-      this.store.characters.update(prev => [newCharacter, ...prev]);
+      this.store.add(newCharacter);
       this.loading.set(false);
       this.dialogRef.close(newCharacter);
-    }, 800);
+    }, 500);
   }
 
   cancel() {

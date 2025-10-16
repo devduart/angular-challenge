@@ -1,8 +1,11 @@
-import { signal, computed } from '@angular/core';
+import { signal, computed, inject } from '@angular/core';
 import { Character } from '../../../core/models/character.model';
 import { CharactersService } from '../../../core/services/characters.service';
+import { OverridesService } from '../../../core/services/overrides.service';
 
 export function createCharactersStore(service: CharactersService) {
+  const overrides = inject(OverridesService);
+
   const characters = signal<Character[]>([]);
   const loading = signal(false);
   const filter = signal('');
@@ -11,11 +14,12 @@ export function createCharactersStore(service: CharactersService) {
   const totalItems = signal(0);
   const pageSize = 20;
 
-  const filtered = computed(() =>
-    characters().filter(c =>
-      c.name.toLowerCase().includes(filter().toLowerCase())
-    )
-  );
+  const filtered = computed(() => {
+    const term = filter().toLowerCase().trim();
+    return term
+      ? characters().filter(c => c.name.toLowerCase().includes(term))
+      : characters();
+  });
 
   const loadPage = (p = 1) => {
     loading.set(true);
@@ -24,9 +28,10 @@ export function createCharactersStore(service: CharactersService) {
 
     req$.subscribe({
       next: res => {
-        characters.set(res.results);
+        const merged = overrides.apply(res.results);
+        characters.set(merged);
         totalPages.set(res.info.pages);
-        totalItems.set(res.info.count);
+        totalItems.set(res.info.count + overrides.extraCount());
         page.set(p);
       },
       error: () => loading.set(false),
@@ -34,18 +39,24 @@ export function createCharactersStore(service: CharactersService) {
     });
   };
 
-  const nextPage = () => {
-    if (page() < totalPages()) loadPage(page() + 1);
+  const add = (c: Character) => {
+    overrides.add(c);
+    characters.update(list => [c, ...list]);
   };
 
-  const prevPage = () => {
-    if (page() > 1) loadPage(page() - 1);
+  const update = (c: Character) => {
+    overrides.update(c);
+    characters.update(list => list.map(x => x.id === c.id ? c : x));
   };
 
-  const search = (term: string) => {
-    filter.set(term);
-    loadPage(1); // volta pra página 1
+  const remove = (id: number) => {
+    overrides.remove(id);
+    characters.update(list => list.filter(c => c.id !== id));
   };
+
+  const nextPage = () => { if (page() < totalPages()) loadPage(page() + 1); };
+  const prevPage = () => { if (page() > 1) loadPage(page() - 1); };
+  const search = (term: string) => { filter.set(term); loadPage(1); };
 
   return Object.freeze({
     characters,
@@ -59,5 +70,8 @@ export function createCharactersStore(service: CharactersService) {
     nextPage,
     prevPage,
     search,
+    add,
+    update,
+    remove,
   });
 }

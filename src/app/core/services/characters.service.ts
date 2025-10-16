@@ -27,7 +27,7 @@ export class CharactersService {
         of({
           info: { count: 0, pages: 0, next: null, prev: null },
           results: [],
-        } satisfies CharacterResponse) // 👈 garante o mesmo tipo
+        } satisfies CharacterResponse)
       )
     );
   }
@@ -41,7 +41,7 @@ export class CharactersService {
           of({
             info: { count: 0, pages: 0, next: null, prev: null },
             results: [],
-          } satisfies CharacterResponse) // 👈 mesmo aqui
+          } satisfies CharacterResponse)
         )
       );
   }
