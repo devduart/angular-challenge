@@ -1,15 +1,27 @@
-<div class="detail-container">
+<mat-dialog-content class="detail-content">
   <button mat-icon-button class="close-btn" (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
 
-  <div class="detail-content">
-    <img [src]="character().image" [alt]="character().name" class="detail-avatar" />
-    <h2>{{ character().name }}</h2>
-    <p><strong>Status:</strong> {{ character().status }}</p>
-    <p><strong>Espécie:</strong> {{ character().species }}</p>
-    <p><strong>Gênero:</strong> {{ character().gender }}</p>
-    <p><strong>Origem:</strong> {{ character().origin?.name }}</p>
-    <p><strong>Localização:</strong> {{ character().location?.name }}</p>
-  </div>
-</div>
+  <img [src]="character().image" [alt]="character().name" class="detail-avatar" />
+
+  <h2 class="mat-headline-medium mt-2">{{ character().name }}</h2>
+
+  <mat-list class="info-list">
+    <mat-list-item>
+      <strong>Status:</strong>&nbsp;{{ character().status }}
+    </mat-list-item>
+    <mat-list-item>
+      <strong>Espécie:</strong>&nbsp;{{ character().species }}
+    </mat-list-item>
+    <mat-list-item>
+      <strong>Gênero:</strong>&nbsp;{{ character().gender }}
+    </mat-list-item>
+    <mat-list-item>
+      <strong>Origem:</strong>&nbsp;{{ character().origin?.name || 'Desconhecida' }}
+    </mat-list-item>
+    <mat-list-item>
+      <strong>Localização:</strong>&nbsp;{{ character().location?.name || 'Desconhecida' }}
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
