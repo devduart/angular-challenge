@@ -1,9 +1,9 @@
-<h2 mat-dialog-title>Criar Novo Personagem</h2>
+<h2 mat-dialog-title class="fw-bold mb-2">Criar Novo Personagem</h2>
 
 <form [formGroup]="form" (ngSubmit)="save()" class="create-form">
   <mat-form-field appearance="outline">
     <mat-label>Nome</mat-label>
-    <input matInput formControlName="name" />
+    <input matInput formControlName="name" required />
     <mat-error *ngIf="form.controls.name.invalid && form.controls.name.touched">
       Nome é obrigatório.
     </mat-error>
@@ -38,12 +38,9 @@
     <input matInput formControlName="image" placeholder="https://..." />
   </mat-form-field>
 
-  <div class="actions">
-    <button mat-flat-button color="primary" type="submit" [disabled]="loading()">
-      Salvar
-    </button>
-    <button mat-stroked-button type="button" (click)="cancel()">
-      Cancelar
-    </button>
-  </div>
 </form>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Salvar</button>
+  <button mat-button (click)="cancel()">Cancelar</button>
+</mat-dialog-actions>
