@@ -1,9 +1,4 @@
-<mat-toolbar color="primary" class="d-flex justify-content-between align-items-center">
-  <span class="fs-5 fw-bold">Rick & Morty</span>
-  <button mat-icon-button (click)="toggleTheme()">
-    <mat-icon>{{ dark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
-  </button>
-</mat-toolbar>
+<app-header></app-header>
 
 <main class="p-3">
   <router-outlet></router-outlet>
