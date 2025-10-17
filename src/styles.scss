@@ -2,3 +2,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.notif-success {
+  background-color: #43a047 !important;
+  color: white !important;
+}
+
+.notif-info {
+  background-color: #1976d2 !important;
+  color: white !important;
+}
+
+.notif-error {
+  background-color: #e53935 !important;
+  color: white !important;
+}

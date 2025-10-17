@@ -6,6 +6,7 @@ import { Character } from '../../../core/models/character.model';
 import { CharactersService } from '../../../core/services/characters.service';
 import { createCharactersStore } from '../state/characters.store';
 import { CharacterEditComponent } from '../form/edit/character-edit.component';
+import { NotificationService } from '../../../shared/components/notification/notification.service';
 
 @Component({
   selector: 'app-character-detail',
@@ -19,7 +20,6 @@ export class CharacterDetailComponent {
   private readonly dialog = inject(MatDialog);
   private readonly service = inject(CharactersService);
   private readonly data = inject(MAT_DIALOG_DATA) as { character: Character };
-
   readonly character = signal(this.data.character);
   store = createCharactersStore(this.service);
 

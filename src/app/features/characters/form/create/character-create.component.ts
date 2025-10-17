@@ -4,6 +4,7 @@ import { CharacterFormComponent } from '../character-form.component';
 import { CharactersService } from '../../../../core/services/characters.service';
 import { createCharactersStore } from '../../state/characters.store';
 import { Character } from '../../../../core/models/character.model';
+import { NotificationService } from '../../../../shared/components/notification/notification.service';
 
 @Component({
   selector: 'app-character-create',
@@ -20,6 +21,7 @@ import { Character } from '../../../../core/models/character.model';
 export class CharacterCreateComponent {
   private readonly dialogRef = inject(MatDialogRef<CharacterCreateComponent>);
   private readonly service = inject(CharactersService);
+  private readonly notification = inject(NotificationService);
   store = createCharactersStore(this.service);
   loading = signal(false);
 
@@ -29,6 +31,7 @@ export class CharacterCreateComponent {
     setTimeout(() => {
       this.store.add(newCharacter);
       this.loading.set(false);
+      this.notification.success('Personagem criado com sucesso!');
       this.dialogRef.close(newCharacter);
     }, 500);
   }
