@@ -1,3 +1,21 @@
+:host {
+  display: block;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+:host::-webkit-scrollbar {
+  width: 6px;
+}
+
+:host::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+
 :host ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1rem;
   background: var(--mat-surface);
