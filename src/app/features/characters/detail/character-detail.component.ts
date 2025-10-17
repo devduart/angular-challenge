@@ -24,7 +24,8 @@ export class CharacterDetailComponent {
   store = createCharactersStore(this.service);
 
   close() {
-    this.dialogRef.close();
+    const wasEdited = this.character() !== this.data.character;
+    this.dialogRef.close({ updated: wasEdited });
   }
 
   edit() {
@@ -37,6 +38,7 @@ export class CharacterDetailComponent {
       if (updated) {
         this.character.set(updated);
         this.store.update(updated);
+        this.dialogRef.updateSize();
       }
     });
   }

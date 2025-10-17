@@ -43,7 +43,7 @@ export class CharactersListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result => {
-      if(result?.deleted){
+      if(result?.deleted || result?.updated){
         this.store.loadPage(this.store.page());
       }
     }));

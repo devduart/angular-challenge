@@ -51,7 +51,13 @@ export function createCharactersStore(service: CharactersService) {
       const newList = [...list];
       newList[index] = updated;
       characters.set(newList);
+
+      overrides.update(updated);
+
+      return true;
     }
+
+    return false;
   };
 
 
