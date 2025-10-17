@@ -11,43 +11,39 @@ mat-dialog-content.detail-content {
   animation: fadeIn 0.25s ease-in-out;
 }
 
-
 .detail-avatar {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
-  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.2);
 }
 
 .close-btn {
   position: absolute;
   top: 0.8rem;
   right: 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  background: transparent;
   color: var(--mat-on-surface);
   transition: all 0.2s ease;
-  backdrop-filter: blur(6px);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.05);
+    transform: scale(1.1);
   }
 }
 
 .info-list {
   width: 100%;
   margin-top: 1rem;
-  border-radius: 0.8rem;
 
   mat-list-item {
     justify-content: center;
     text-align: center;
     font-size: 0.95rem;
     color: var(--mat-on-surface-variant);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
     &:last-child {
       border-bottom: none;
@@ -55,20 +51,47 @@ mat-dialog-content.detail-content {
   }
 }
 
+/* 🔥 Área dos botões de ação */
 .detail-actions {
-  padding-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 
-  button {
-    text-transform: none;
-    font-weight: 500;
-    min-width: 9rem;
+  .action-btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-weight: 500;
+    text-transform: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s ease;
+    background: transparent;
+    box-shadow: none;
+
+    mat-icon {
+      font-size: 1.2rem;
+    }
+
+    &.edit {
+      color: #1976d2; // azul primário
+      &:hover {
+        background: rgba(25, 118, 210, 0.08);
+      }
+    }
+
+    &.delete {
+      color: #d32f2f; // vermelho material
+      &:hover {
+        background: rgba(211, 47, 47, 0.08);
+      }
+    }
   }
 }
 
-
+/* 🔥 Animação */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -80,7 +103,7 @@ mat-dialog-content.detail-content {
   }
 }
 
-
+/* Responsividade */
 @media (max-width: 600px) {
   mat-dialog-content.detail-content {
     padding: 1.2rem;
@@ -89,5 +112,10 @@ mat-dialog-content.detail-content {
   .detail-avatar {
     width: 8rem;
     height: 8rem;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }

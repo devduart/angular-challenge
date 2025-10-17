@@ -38,10 +38,14 @@ mat-form-field {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-
 button[mat-flat-button] {
   font-weight: 500;
   border-radius: 0.5rem;
+  text-transform: none;
+}
+
+button[mat-button] {
+  font-weight: 500;
   text-transform: none;
 }
 
