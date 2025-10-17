@@ -1,6 +1,6 @@
-import { Injectable, inject, Component } from '@angular/core';
+import { Injectable, inject, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -61,5 +61,5 @@ export class NotificationService {
   `,
 })
 export class NotificationConfirmDialog {
-  constructor(public data: { message: string }) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string }) {}
 }
