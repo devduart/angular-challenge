@@ -11,6 +11,7 @@ mat-dialog-content.detail-content {
   animation: fadeIn 0.25s ease-in-out;
 }
 
+
 .detail-avatar {
   width: 10rem;
   height: 10rem;
@@ -53,6 +54,20 @@ mat-dialog-content.detail-content {
     }
   }
 }
+
+.detail-actions {
+  padding-bottom: 1rem;
+
+  button {
+    text-transform: none;
+    font-weight: 500;
+    min-width: 9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
 
 @keyframes fadeIn {
   from {

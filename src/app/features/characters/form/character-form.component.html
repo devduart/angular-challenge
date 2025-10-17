@@ -1,0 +1,56 @@
+<h2 class="dialog-title">{{ title() }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="character-form">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="Alive">Alive</mat-option>
+      <mat-option value="Dead">Dead</mat-option>
+      <mat-option value="unknown">Unknown</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Espécie</mat-label>
+    <input matInput formControlName="species" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Gênero</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+      <mat-option value="Genderless">Genderless</mat-option>
+      <mat-option value="unknown">Unknown</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div formGroupName="origin">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Origem</mat-label>
+      <input matInput formControlName="name" placeholder="Ex: Earth (C-137)" />
+    </mat-form-field>
+  </div>
+
+  <div formGroupName="location">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Localização</mat-label>
+      <input matInput formControlName="name" placeholder="Ex: Citadel of Ricks" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Imagem (URL)</mat-label>
+    <input matInput formControlName="image" placeholder="https://..." />
+  </mat-form-field>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" type="submit">{{ submitLabel() }}</button>
+    <button mat-stroked-button type="button" (click)="onCancel()">Cancelar</button>
+  </mat-dialog-actions>
+</form>

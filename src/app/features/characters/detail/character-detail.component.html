@@ -25,3 +25,16 @@
     </mat-list-item>
   </mat-list>
 </mat-dialog-content>
+
+<mat-dialog-actions align="center" class="detail-actions">
+  <button mat-flat-button color="primary" (click)="edit()">
+    <mat-icon>edit</mat-icon>
+    Editar
+  </button>
+
+  <button mat-flat-button color="warn" (click)="delete()">
+    <mat-icon>delete</mat-icon>
+    Excluir
+  </button>
+</mat-dialog-actions>
+

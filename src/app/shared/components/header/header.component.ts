@@ -3,7 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { CharacterCreateComponent } from '../../../features/characters/create/character-create.component';
+import { CharacterCreateComponent } from '../../../features/characters/form/create/character-create.component';
 
 @Component({
   selector: 'app-header',

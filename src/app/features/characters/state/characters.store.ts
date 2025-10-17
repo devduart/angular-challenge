@@ -44,10 +44,16 @@ export function createCharactersStore(service: CharactersService) {
     characters.update(list => [c, ...list]);
   };
 
-  const update = (c: Character) => {
-    overrides.update(c);
-    characters.update(list => list.map(x => x.id === c.id ? c : x));
+  const update = (updated: Character) => {
+    const list = characters();
+    const index = list.findIndex(c => c.id === updated.id);
+    if (index !== -1) {
+      const newList = [...list];
+      newList[index] = updated;
+      characters.set(newList);
+    }
   };
+
 
   const remove = (id: number) => {
     overrides.remove(id);
