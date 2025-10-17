@@ -51,7 +51,6 @@ mat-dialog-content.detail-content {
   }
 }
 
-/* 🔥 Área dos botões de ação */
 .detail-actions {
   display: flex;
   justify-content: center;
@@ -83,7 +82,7 @@ mat-dialog-content.detail-content {
     }
 
     &.delete {
-      color: #d32f2f; // vermelho material
+      color: #d32f2f;
       &:hover {
         background: rgba(211, 47, 47, 0.08);
       }
@@ -91,7 +90,6 @@ mat-dialog-content.detail-content {
   }
 }
 
-/* 🔥 Animação */
 @keyframes fadeIn {
   from {
     opacity: 0;
