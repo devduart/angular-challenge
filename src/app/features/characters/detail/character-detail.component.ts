@@ -41,7 +41,7 @@ export class CharacterDetailComponent {
     });
   }
 
-  delete() {
+  async delete() {
     if (confirm(`Deseja realmente remover "${this.character().name}"?`)) {
       this.store.remove(this.character().id);
       this.dialogRef.close({ deleted: true });

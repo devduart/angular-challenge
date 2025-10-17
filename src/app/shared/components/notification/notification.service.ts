@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
@@ -43,7 +44,7 @@ export class NotificationService {
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '150ms',
     });
-    return dialogRef.afterClosed().toPromise();
+    return firstValueFrom(dialogRef.afterClosed());
   }
 }
 

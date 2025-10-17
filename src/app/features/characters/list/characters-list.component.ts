@@ -36,10 +36,16 @@ export class CharactersListComponent implements OnInit {
   }
 
   openDetail(character: Character) {
-    this.dialog.open(CharacterDetailComponent, {
+    const dialogRef = this.dialog.open(CharacterDetailComponent, {
       data: { character },
       panelClass: 'detail-dialog',
       autoFocus: false,
     });
+
+    dialogRef.afterClosed().subscribe((result => {
+      if(result?.deleted){
+        this.store.loadPage(this.store.page());
+      }
+    }));
   }
 }
