@@ -13,13 +13,7 @@ import { CharacterCreateComponent } from '../../../features/characters/form/crea
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  readonly dark = signal(false);
-
   private readonly dialog = inject(MatDialog);
-
-  toggleTheme() {
-    this.dark.update(d => !d);
-  }
 
   openCreateDialog() {
     this.dialog.open(CharacterCreateComponent, {

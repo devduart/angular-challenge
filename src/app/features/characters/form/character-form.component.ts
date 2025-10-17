@@ -55,7 +55,9 @@ export class CharacterFormComponent {
         this.title.set('Editar Personagem');
         this.submitLabel.set('Atualizar');
       }
-    });
+    },
+    { allowSignalWrites: true }
+  );
   }
 
   onSubmit() {
