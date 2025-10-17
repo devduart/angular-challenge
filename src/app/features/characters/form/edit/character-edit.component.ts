@@ -11,7 +11,7 @@ import { NotificationService } from '../../../../shared/components/notification/
   standalone: true,
   imports: [MatDialogModule, CharacterFormComponent],
   template: `
-    <app-character-form (formSubmit)="update($event)" />
+    <app-character-form [initialData]="character()" (formSubmit)="update($event)" />
   `,
 })
 export class CharacterEditComponent {
@@ -19,16 +19,10 @@ export class CharacterEditComponent {
   private readonly data = inject(MAT_DIALOG_DATA) as { character: Character };
   private readonly service = inject(CharactersService);
   private readonly notification = inject(NotificationService);
+
   readonly character = signal(this.data.character);
   store = createCharactersStore(this.service);
   loading = signal(false);
-
-  constructor() {
-    queueMicrotask(() => {
-      const form = this.dialogRef.componentInstance;
-      form?.initialData.set(this.character());
-    });
-  }
 
   update(data: Character) {
     this.loading.set(true);

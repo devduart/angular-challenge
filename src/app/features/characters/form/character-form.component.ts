@@ -1,4 +1,4 @@
-import { Component, signal, effect, inject, EventEmitter, Output } from '@angular/core';
+import { Component, signal, effect, inject, EventEmitter, Output, input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -25,7 +25,7 @@ export class CharacterFormComponent {
   private readonly fb = inject(FormBuilder);
   private readonly dialogRef = inject(MatDialogRef<CharacterFormComponent>);
 
-  initialData = signal<Character | null>(null);
+  initialData = input<Character | null>(null);
   submitLabel = signal('Salvar');
   title = signal('Criar Novo Personagem');
 
